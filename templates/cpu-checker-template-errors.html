@@ -1,0 +1,18 @@
+<template name="cpuErrors">
+		
+	<div class="error-graph">
+
+		{{#each errors}}
+
+			<div class="error-graph-error error-graph-error-type-{{ severity }}">
+
+				<p class="error-graph-error-time">{{ time }}</p>
+
+				<p class="error-graph-error-cpu-usage">{{ cpuUsage }}%</p>
+
+			</div>
+
+		{{/each}}
+	</div>
+
+</template>

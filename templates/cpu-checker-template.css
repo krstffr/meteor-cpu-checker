@@ -1,0 +1,106 @@
+.usage-graph {
+	background: #eee;
+	overflow: hidden;
+	width: 100%;
+	border-radius: 4px;
+	border: 1px solid #BBB;
+	position: relative;
+}
+.usage-graph-bar {
+	position: relative;
+	float: left;
+	width: 2%;
+	background: #000;
+	background: rgba(0,0,0,0.6);
+	color: #fff;
+	margin: 0 0 0 0.4%;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+.usage-graph-bar-hidden-val {
+	display: none;
+	transition: all 0.3s ease;
+}
+.usage-graph-bar:hover {
+	width: 4%;
+}
+.usage-graph-bar:hover > .usage-graph-bar-hidden-val {
+	display: block;
+	position: absolute;
+	top: -16px;
+	width: 100%;
+	background: #CCC;
+	line-height: 10px;
+	font-size: 10px;
+	text-align: center;
+	padding: 3px 0 2px;
+	border-bottom: 1px solid #000;
+}
+
+
+/* percent stuff */
+.error-graph-percent {
+	width: 100%;
+	border-top: 1px solid #999;
+	margin-bottom: -1px;
+	position: absolute;
+	bottom: 0;
+}
+.error-graph-25-percent {
+	height: 25%;
+}
+.error-graph-50-percent {
+	height: 50%;
+}
+.error-graph-75-percent {
+	height: 75%;
+}
+.error-graph-percent-text {
+	padding: 0.2em;
+	font-size: 0.8em;
+	color: #999;
+}
+
+/* Error stuff */
+.error-graph {
+	overflow: hidden;
+	margin: 0.3em 0 1em;
+}
+.error-graph-error {
+	float: left;
+	width: 90px;
+	font-size: 12px;
+	text-align: center;
+	margin: 3px 3px 0 0;
+	border-radius: 4px;
+}
+.error-graph-error-type-low {
+	background: #3c3;
+}
+.error-graph-error-type-medium {
+	background: #E9E937;
+}
+.error-graph-error-type-high {
+	background: #E93131;
+}
+.error-graph-error-time {
+	margin: 0.8em 0 0;
+	font-size: 1em;	
+	line-height: 1em;
+}
+.error-graph-error-cpu-usage {
+	font-size: 2.2em;
+	line-height: 1em;
+	margin: 0.3em 0;
+}
+
+
+/* Usage big number */
+.usage-graph-big-usage-number {
+	text-align: center;
+	font-size: 5.4em;
+	height: 0;
+	overflow: visible;
+	color: #FFF;
+	position: relative;
+}
