@@ -93,60 +93,61 @@
 
 /* percent stuff */
 
-	.cpu-checker-wrapper .error-graph-percent {
+	.cpu-checker-wrapper .usage-graph-percent {
 		width: 100%;
 		border-top: 1px solid #999;
 		margin-bottom: -1px;
 		position: absolute;
 		bottom: 0;
 	}
-	.cpu-checker-wrapper .error-graph-25-percent {
+	.cpu-checker-wrapper .usage-graph-25-percent {
 		height: 25%;
 	}
-	.cpu-checker-wrapper .error-graph-50-percent {
+	.cpu-checker-wrapper .usage-graph-50-percent {
 		height: 50%;
 	}
-	.cpu-checker-wrapper .error-graph-75-percent {
+	.cpu-checker-wrapper .usage-graph-75-percent {
 		height: 75%;
 	}
-	.cpu-checker-wrapper .error-graph-percent-text {
+	.cpu-checker-wrapper .usage-graph-percent-text {
 		padding: 0.2em;
 		font-size: 0.8em;
 		color: #999;
 	}
 
-/* Error stuff */
+/* Warning stuff */
 
-	.cpu-checker-wrapper .error-graph {
+	.cpu-checker-wrapper .warning-graph {
 		overflow: hidden;
 		margin: 0.3em 0 1em;
+		text-align: center;
 	}
-	.cpu-checker-wrapper .error-graph-error {
-		float: left;
+	.cpu-checker-wrapper .warning-graph-warning {
+		display: inline-block;
 		width: 90px;
 		font-size: 12px;
 		text-align: center;
-		margin: 3px 3px 0 0;
+		margin: 3px 3px 3px 0;
 		border-radius: 4px;
 	}
-	.cpu-checker-wrapper .error-graph-error-type-low {
-		background: #3c3;
+	.cpu-checker-wrapper .warning-graph-warning-type-low {
+		background: rgba(184, 92, 92, 0.3);
 	}
-	.cpu-checker-wrapper .error-graph-error-type-medium {
-		background: #E9E937;
+	.cpu-checker-wrapper .warning-graph-warning-type-medium {
+		background: rgba(184, 92, 92, 0.6);
 	}
-	.cpu-checker-wrapper .error-graph-error-type-high {
-		background: #E93131;
+	.cpu-checker-wrapper .warning-graph-warning-type-high {
+		background: rgba(184, 92, 92, 1);
 	}
-	.cpu-checker-wrapper .error-graph-error-time {
+	.cpu-checker-wrapper .warning-graph-warning-time {
 		margin: 0.8em 0 0;
 		font-size: 1em;	
 		line-height: 1em;
 	}
-	.cpu-checker-wrapper .error-graph-error-cpu-usage {
-		font-size: 2.2em;
+	.cpu-checker-wrapper .warning-graph-warning-cpu-usage {
+		font-size: 2.4em;
 		line-height: 1em;
-		margin: 0.3em 0;
+		margin: 0.3em 0 0.35em;
 	}
 
 

@@ -13,10 +13,6 @@ Template.cpuChecker.events({
 			cpuCheckerClient.stopCpuUsageMonitor();
 		}
 
-		if (doThis === 'getErrors') {
-			cpuCheckerClient.getErrors();
-		}
-
 	}
 });
 
@@ -33,9 +29,9 @@ Template.currentUsageBigNumber.helpers({
 	}
 });
 
-Template.cpuErrors.helpers({
-	errors: function () {
-		return Session.get('cpuErrors');
+Template.cpuWarnings.helpers({
+	warnings: function () {
+		return Session.get('cpuWarnings');
 	},
 	time: function() {
 		var date = new Date(this.time);

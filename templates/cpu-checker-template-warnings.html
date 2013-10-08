@@ -1,0 +1,18 @@
+<template name="cpuWarnings">
+		
+	<div class="warning-graph">
+
+		{{#each warnings}}
+
+			<div class="warning-graph-warning warning-graph-warning-type-{{ severity }}">
+
+				<p class="warning-graph-warning-time">{{ time }}</p>
+
+				<p class="warning-graph-warning-cpu-usage">{{ cpuUsage }}%</p>
+
+			</div>
+
+		{{/each}}
+	</div>
+
+</template>

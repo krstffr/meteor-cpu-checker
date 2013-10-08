@@ -12,28 +12,28 @@ CPUCheckerServer = function() {
 	that.autoChecker = false;
 	that.currCpuUsage = false;
 
-	// Vars, errors
-	that.lastErrorTime = 0;
-	that.errors = [];
-	that.minErrorTime = 5000;
+	// Vars, warnings
+	that.lastWarningTime = 0;
+	that.warnings = [];
+	that.minWarningTime = 5000;
 
 	// Thresholds
 	that.thresholds = [
 		{
 			cpuThreshold: 25,
-			actionMethod: 'saveError',
+			actionMethod: 'saveWarning',
 			actionVar: 25,
 			severity: 'low'
 		},
 		{
 			cpuThreshold: 50,
-			actionMethod: 'saveError',
+			actionMethod: 'saveWarning',
 			actionVar: 50,
 			severity: 'medium'
 		},
 		{
 			cpuThreshold: 70,
-			actionMethod: 'saveError',
+			actionMethod: 'saveWarning',
 			actionVar: 70,
 			severity: 'high'
 		}
@@ -50,34 +50,34 @@ CPUCheckerServer = function() {
 		});
 	};
 
-	that.saveError = function(thresholdObj, cpuUsage) {
+	that.saveWarning = function(thresholdObj, cpuUsage) {
 
 		var timeNow = new Date().valueOf();
 
-		// Check if last error reported was too soon, if so cancel
-		if (that.lastErrorTime > timeNow-that.minErrorTime) return false;
+		// Check if last warning reported was too soon, if so cancel
+		if (that.lastWarningTime > timeNow-that.minWarningTime) return false;
 
 		// CPU usage must be over 0
 		if (cpuUsage < 1) return false;
 
-		var error = {
+		var warning = {
 			time: new Date().valueOf(),
 			threshold: thresholdObj.threshold,
 			cpuUsage: cpuUsage,
 			severity: thresholdObj.severity
 		};
-		// Add the error to the errors array
-		that.errors.push(error);
+		// Add the warning to the warnings array
+		that.warnings.push(warning);
 		
-		// Update the last error time to now!
-		that.lastErrorTime = timeNow;
+		// Update the last warning time to now!
+		that.lastWarningTime = timeNow;
 
 		return true;
 	};
 
 	Meteor.methods({
-		CPUCheckerReturnErrors: function() {
-			return that.errors;
+		CPUCheckerReturnWarnings: function() {
+			return that.warnings;
 		},
 		// Return startCpuUsageMonitor()
 		CPUCheckerStartCheck: function(intervalTime) {
@@ -90,8 +90,8 @@ CPUCheckerServer = function() {
 		},
 		// Remove interval and stop check
 		CPUCheckerStopCheck: function() {
-			console.log('shutting down cpu check... These are the current reported errors: ');
-			console.log(that.errors);
+			console.log('shutting down cpu check... These are the current reported warnings: ');
+			console.log(that.warnings);
 			return that.stopCpuUsageMonitor();
 		},
 		// Return getLoadAverage()
@@ -105,6 +105,7 @@ CPUCheckerServer = function() {
 	});
 
 	that.setIntervalTime = function(intervalTime, callback) {
+		intervalTime = (intervalTime > 100) ? intervalTime : 100;
 		that.checkIntervalTime = intervalTime;
 		callback();
 	};

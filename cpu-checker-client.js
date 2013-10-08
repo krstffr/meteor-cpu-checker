@@ -9,10 +9,20 @@ CPUCheckerClient = function () {
 		maxHeight: 200
 	};
 
-	that.getErrors = function() {
-		Meteor.call('CPUCheckerReturnErrors', function (error, result) {
-			Session.set('cpuErrors', result);
+	// Warnings
+	that.warningInterval = false;
+	that.warningIntervalTime = that.checkIntervalTime;
+
+	that.getWarnings = function() {
+		Meteor.call('CPUCheckerReturnWarnings', function (error, result) {
+			Session.set('cpuWarnings', result);
 		});
+	};
+
+	that.autoSyncWarnings = function() {
+		that.warningInterval = Meteor.setInterval(function () {
+			that.getWarnings();
+		}, that.warningIntervalTime);
 	};
 
 	that.setCpuUsageSession = function() {
@@ -60,6 +70,9 @@ CPUCheckerClient = function () {
 				that.appendCpuDataToChart();
 			}, that.checkIntervalTime);	
 		});
+
+		that.autoSyncWarnings();
+
 		return true;
 	};
 
@@ -67,6 +80,7 @@ CPUCheckerClient = function () {
 		Meteor.clearInterval(that.autoChecker);
 		that.autoChecker = false;
 		that.currCpuUsage = false;
+		that.warningInterval = false;
 	};
 
 	// Stop the check return that.autoChecker === false
