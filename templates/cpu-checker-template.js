@@ -20,9 +20,16 @@ Template.cpuChecker.events({
 	}
 });
 
+Template.cpuCheckerControlPanel.helpers({
+	cpuCheckerIntervalTime: function () {
+		return Session.get('cpuCheckerIntervalTime');
+	}
+});
+
 Template.currentUsageBigNumber.helpers({
 	currentUsage: function() {
-		return Session.get('cpuUsage')+'%';
+		if (typeof Session.get('cpuUsage') === 'number') return Session.get('cpuUsage')+'%';
+		return Session.get('cpuUsage');
 	}
 });
 

@@ -1,30 +1,35 @@
-.usage-graph {
+.cpu-checker-wrapper {
+	font-family: Helvetica, sans-serif;
+	font-size: 14px;
+	line-height: 1.2em;
+}
+.cpu-checker-wrapper .usage-graph {
 	background: #eee;
 	overflow: hidden;
 	width: 100%;
+	height: 200px;
 	border-radius: 4px;
 	border: 1px solid #BBB;
 	position: relative;
 }
-.usage-graph-bar {
+.cpu-checker-wrapper .usage-graph-bar {
 	position: relative;
 	float: left;
 	width: 2%;
-	background: #000;
-	background: rgba(0,0,0,0.6);
+	background: #B85C5C;
 	color: #fff;
 	margin: 0 0 0 0.4%;
 	cursor: pointer;
 	transition: all 0.3s ease;
 }
-.usage-graph-bar-hidden-val {
+.cpu-checker-wrapper .usage-graph-bar-hidden-val {
 	display: none;
 	transition: all 0.3s ease;
 }
-.usage-graph-bar:hover {
+.cpu-checker-wrapper .usage-graph-bar:hover {
 	width: 4%;
 }
-.usage-graph-bar:hover > .usage-graph-bar-hidden-val {
+.cpu-checker-wrapper .usage-graph-bar:hover > .usage-graph-bar-hidden-val {
 	display: block;
 	position: absolute;
 	top: -16px;
@@ -38,69 +43,123 @@
 }
 
 
+/* Control panel */
+
+	.cpu-checker-control-panel {
+		text-align: center;
+		margin: 10px 0 8px;
+	}
+
+	/*Inputs */
+	.cpu-checker-wrapper button,
+	.cpu-checker-wrapper input[type="text"] {
+		padding: 6px 12px;
+		border: none;
+		border-radius: 4px;
+		font-size: 0.9em;
+		cursor: pointer;
+	}
+	.cpu-checker-wrapper textarea:focus, 
+	.cpu-checker-wrapper input:focus,
+	.cpu-checker-wrapper button:focus {
+	    outline: 0;
+	}
+
+	/* Inputs, text etc. */
+	.cpu-checker-wrapper input[type="text"] {
+		padding: 6px;
+		border: 1px solid #ddd;
+	}
+
+	/* Inputs, buttons etc. */
+	.cpu-checker-wrapper button {
+		color: #fff;
+		transition: 0.1s all ease;
+	}
+	.cpu-checker-wrapper button:hover {
+		box-shadow: inset 0 10px 10px -5px rgba(0,0,0,0.2);
+	}
+	.cpu-checker-wrapper button:active {
+		box-shadow: inset 0 8px 10px -5px rgba(0,0,0,0.1);
+		opacity: 0.9;
+	}
+	.cpu-checker-wrapper .positive-value {
+		background: #5CB85C;
+	}
+	.cpu-checker-wrapper .negative-value {
+		background: #B85C5C;
+	}
+
+
 /* percent stuff */
-.error-graph-percent {
-	width: 100%;
-	border-top: 1px solid #999;
-	margin-bottom: -1px;
-	position: absolute;
-	bottom: 0;
-}
-.error-graph-25-percent {
-	height: 25%;
-}
-.error-graph-50-percent {
-	height: 50%;
-}
-.error-graph-75-percent {
-	height: 75%;
-}
-.error-graph-percent-text {
-	padding: 0.2em;
-	font-size: 0.8em;
-	color: #999;
-}
+
+	.cpu-checker-wrapper .error-graph-percent {
+		width: 100%;
+		border-top: 1px solid #999;
+		margin-bottom: -1px;
+		position: absolute;
+		bottom: 0;
+	}
+	.cpu-checker-wrapper .error-graph-25-percent {
+		height: 25%;
+	}
+	.cpu-checker-wrapper .error-graph-50-percent {
+		height: 50%;
+	}
+	.cpu-checker-wrapper .error-graph-75-percent {
+		height: 75%;
+	}
+	.cpu-checker-wrapper .error-graph-percent-text {
+		padding: 0.2em;
+		font-size: 0.8em;
+		color: #999;
+	}
 
 /* Error stuff */
-.error-graph {
-	overflow: hidden;
-	margin: 0.3em 0 1em;
-}
-.error-graph-error {
-	float: left;
-	width: 90px;
-	font-size: 12px;
-	text-align: center;
-	margin: 3px 3px 0 0;
-	border-radius: 4px;
-}
-.error-graph-error-type-low {
-	background: #3c3;
-}
-.error-graph-error-type-medium {
-	background: #E9E937;
-}
-.error-graph-error-type-high {
-	background: #E93131;
-}
-.error-graph-error-time {
-	margin: 0.8em 0 0;
-	font-size: 1em;	
-	line-height: 1em;
-}
-.error-graph-error-cpu-usage {
-	font-size: 2.2em;
-	line-height: 1em;
-	margin: 0.3em 0;
-}
+
+	.cpu-checker-wrapper .error-graph {
+		overflow: hidden;
+		margin: 0.3em 0 1em;
+	}
+	.cpu-checker-wrapper .error-graph-error {
+		float: left;
+		width: 90px;
+		font-size: 12px;
+		text-align: center;
+		margin: 3px 3px 0 0;
+		border-radius: 4px;
+	}
+	.cpu-checker-wrapper .error-graph-error-type-low {
+		background: #3c3;
+	}
+	.cpu-checker-wrapper .error-graph-error-type-medium {
+		background: #E9E937;
+	}
+	.cpu-checker-wrapper .error-graph-error-type-high {
+		background: #E93131;
+	}
+	.cpu-checker-wrapper .error-graph-error-time {
+		margin: 0.8em 0 0;
+		font-size: 1em;	
+		line-height: 1em;
+	}
+	.cpu-checker-wrapper .error-graph-error-cpu-usage {
+		font-size: 2.2em;
+		line-height: 1em;
+		margin: 0.3em 0;
+	}
 
 
 /* Usage big number */
-.usage-graph-big-usage-number {
-	text-align: center;
-	font-size: 5.4em;
-	height: 0;
-	overflow: visible;
-	color: #FFF;
-	position: relative;
-}
+
+	.cpu-checker-wrapper .usage-graph-big-usage-number {
+		text-align: center;
+		font-size: 7.4em;
+		line-height: 1em;
+		height: 0;
+		overflow: visible;
+		color: #FFF;
+		position: relative;
+		font-weight: bold;
+		text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+	}

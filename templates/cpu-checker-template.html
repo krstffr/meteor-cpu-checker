@@ -1,27 +1,26 @@
 <template name="cpuChecker">
+
+	<div class="cpu-checker-wrapper">
 		
-	<label for="cpu-check-interval">Time in ms</label>
-	<input type="text" id="cpu-check-interval" />
+		{{> cpuCheckerControlPanel }}
 
-	<button data-cpu-checker-action="start">Start</button>
-	<button data-cpu-checker-action="stop">Stop</button>
-	<button data-cpu-checker-action="getErrors">Uppdatera fel</button>
+		<div class="usage-graph">
+			<div class="error-graph-percent error-graph-25-percent">
+				<div class="error-graph-percent-text">25%</div>
+			</div>
+			<div class="error-graph-percent error-graph-50-percent">
+				<div class="error-graph-percent-text">50%</div>
+			</div>
+			<div class="error-graph-percent error-graph-75-percent">
+				<div class="error-graph-percent-text">75%</div>
+			</div>
+			<div class="usage-graph-big-usage-number">
+				{{> currentUsageBigNumber}}
+			</div>
+		</div>
 
-	<div class="usage-graph">
-		<div class="error-graph-percent error-graph-25-percent">
-			<div class="error-graph-percent-text">25%</div>
-		</div>
-		<div class="error-graph-percent error-graph-50-percent">
-			<div class="error-graph-percent-text">50%</div>
-		</div>
-		<div class="error-graph-percent error-graph-75-percent">
-			<div class="error-graph-percent-text">75%</div>
-		</div>
-		<div class="usage-graph-big-usage-number">
-			{{> currentUsageBigNumber}}
-		</div>
+		{{> cpuErrors}}
+
 	</div>
-
-	{{> cpuErrors}}
 
 </template>

@@ -82,10 +82,8 @@ CPUCheckerServer = function() {
 		// Return startCpuUsageMonitor()
 		CPUCheckerStartCheck: function(intervalTime) {
 			console.log('client connected, passed '+intervalTime+'ms intervalTime');
-			that.setIntervalTime( intervalTime, function() {
-				that.startCpuUsageMonitor();
-			});
-			// return 
+			that.setIntervalTime( intervalTime, that.startCpuUsageMonitor );
+			// return
 		},
 		CPUCheckerGetCurrentIntervalTime: function() {
 			return that.checkIntervalTime;

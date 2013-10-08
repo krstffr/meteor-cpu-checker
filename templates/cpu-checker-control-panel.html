@@ -1,0 +1,14 @@
+<template name="cpuCheckerControlPanel">
+
+	<div class="cpu-checker-control-panel">
+
+		<label for="cpu-check-interval">Time in ms</label>
+		<input type="text" id="cpu-check-interval" value="{{ cpuCheckerIntervalTime }}" />
+
+		<button class="positive-value" data-cpu-checker-action="start">Start</button>
+		<button class="negative-value" data-cpu-checker-action="stop">Stop</button>
+		<!-- <button data-cpu-checker-action="getErrors">Uppdatera fel</button> -->
+
+	</div>
+
+</template>

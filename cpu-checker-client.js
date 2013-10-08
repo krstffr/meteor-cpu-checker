@@ -26,23 +26,33 @@ CPUCheckerClient = function () {
 
 	that.syncTimerWithServer = function() {
 		Meteor.call('CPUCheckerGetCurrentIntervalTime', function (error, result) {
-			if (result !== that.checkIntervalTime) that.startCpuUsageMonitor( result );
+			if (result !== that.checkIntervalTime) {
+				// Set new interval time
+				that.startCpuUsageMonitor( result );
+			}
 		});
 	};
 
 	that.appendCpuDataToChart = function() {
 		if ($('.usage-graph').find('.usage-graph-bar').length > 39) $('.usage-graph').find('.usage-graph-bar').first().remove();
-		$('.usage-graph').append('<div class="usage-graph-bar" style="margin-top: '+(that.barGraphStuff.maxHeight - (1+Session.get('cpuUsage')*(that.barGraphStuff.maxHeight/100)) )+'px; height: '+(1+Session.get('cpuUsage')*(that.barGraphStuff.maxHeight/100))+'px;"><span class="usage-graph-bar-hidden-val">'+Session.get('cpuUsage')+'%</span></div>');
+		$('.usage-graph').append('<div class="usage-graph-bar" style="opacity: 0.'+(Session.get('cpuUsage') + 20)+'; margin-top: '+(that.barGraphStuff.maxHeight - (1+Session.get('cpuUsage')*(that.barGraphStuff.maxHeight/100)) )+'px; height: '+(1+Session.get('cpuUsage')*(that.barGraphStuff.maxHeight/100))+'px;"><span class="usage-graph-bar-hidden-val">'+Session.get('cpuUsage')+'%</span></div>');
+		return true;
+	};
+
+	that.setIntervalTime = function( intervalTime ) {
+		that.checkIntervalTime = intervalTime;
+		Session.set('cpuCheckerIntervalTime', that.checkIntervalTime);
 		return true;
 	};
 
 	// Set that.autoChecker to interval, return !== false
-	that.startCpuUsageMonitor = function(intervalTime) {
+	that.startCpuUsageMonitor = function( intervalTime ) {
 
 		// Reset the current timer...
 		that.stopLocalCpuUsageMonitorStuff();
 
-		that.checkIntervalTime = intervalTime;
+		that.setIntervalTime( intervalTime );
+
 		Meteor.call('CPUCheckerStartCheck', intervalTime, function (error, result) {
 			that.autoChecker = Meteor.setInterval(function () {
 				that.syncTimerWithServer();
@@ -67,7 +77,7 @@ CPUCheckerClient = function () {
 	};
 
 	Meteor.startup(function () {
-		Session.set('cpuUsage', 'wait');
+		Session.set('cpuUsage', 'connecting...');
 		that.syncTimerWithServer();
 	});
 

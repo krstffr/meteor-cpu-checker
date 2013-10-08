@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "usage": {
+      "version": "0.3.8",
+      "dependencies": {
+        "bindings": {
+          "version": "1.1.1"
+        }
+      }
+    }
+  }
+}
