@@ -9,6 +9,7 @@ CPUCheckerServer = function() {
 
 	// Vars
 	that.checkIntervalTime = 1000;
+	that.checkIntervalTimeMinimum = 1000;
 	that.autoChecker = false;
 	that.currCpuUsage = false;
 
@@ -105,7 +106,7 @@ CPUCheckerServer = function() {
 	});
 
 	that.setIntervalTime = function(intervalTime, callback) {
-		intervalTime = (intervalTime > 100) ? intervalTime : 100;
+		intervalTime = (intervalTime > that.checkIntervalTimeMinimum) ? intervalTime : that.checkIntervalTimeMinimum;
 		that.checkIntervalTime = intervalTime;
 		callback();
 	};
